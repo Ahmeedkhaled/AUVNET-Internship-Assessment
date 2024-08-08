@@ -3,7 +3,7 @@ import 'package:task_auvnet/my_theme.dart';
 
 // ignore: must_be_immutable
 class HomeTab extends StatelessWidget {
-  HomeTab({super.key});
+  const HomeTab({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(

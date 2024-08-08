@@ -1,6 +1,20 @@
-part of 'register_cubit_cubit.dart';
+import 'package:task_auvnet/domain/entity/auth_result_entity.dart';
 
-@immutable
-sealed class RegisterCubitState {}
+abstract class RegisterCubitState {}
 
-final class RegisterCubitInitial extends RegisterCubitState {}
+class RegisterCubitInitial extends RegisterCubitState {}
+
+class RegisterCubitLoading extends RegisterCubitState {
+  String? loadingMessage;
+  RegisterCubitLoading({required this.loadingMessage});
+}
+
+class RegisterCubitError extends RegisterCubitState {
+  String? errorMessage;
+  RegisterCubitError({required this.errorMessage});
+}
+
+class RegisterCubitSuccess extends RegisterCubitState {
+  AuthResultEntity authResultEntity;
+  RegisterCubitSuccess({required this.authResultEntity});
+}
