@@ -1,57 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:task_auvnet/my_theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_auvnet/constant/routes.dart';
+import 'package:task_auvnet/constant/shared_pre.dart';
+import 'package:task_auvnet/ui/tabs/profile/widget/profile_info.dart';
+import 'package:task_auvnet/ui/tabs/profile/widget/profile_section.dart';
 
 class ProfileTab extends StatelessWidget {
-  const ProfileTab({super.key});
+  const ProfileTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Image.asset("assets/images/smalllogo.png"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: TextFormField(
-                      decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.06),
-                      child: Icon(
-                        Icons.search,
-                        size: 35,
-                        color: MyTheme.primaryColor,
-                      ),
+    // var editProfileArgs =
+    //     ModalRoute.of(context)?.settings.arguments as EditProfileArgs?;
+    return SafeArea(
+        child: Scaffold(
+            body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: SingleChildScrollView(
+                    child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.end,
+                  // mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    BuildProfileInfo(
+                        // userName: editProfileArgs?.name ?? state.userName,
+                        // address: editProfileArgs?.address ?? state.address,
+                        ),
+                    BuildSection(
+                      title: "My Products",
+                      count: "102",
+                      onTap: () {},
                     ),
-                    hintText: "what do you search for?",
-                    hintStyle: Theme.of(context).textTheme.titleSmall,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      borderSide: BorderSide(color: MyTheme.primaryColor),
+                    const Divider(thickness: 1, color: Color(0xffBAB1B1)),
+                    BuildSection(title: "My Jobs", count: "904", onTap: () {}),
+                    const Divider(thickness: 1, color: Color(0xffBAB1B1)),
+                    BuildSection(
+                      title: "Notifications",
+                      count: null,
+                      onTap: () {
+                        // Navigator.of(context)
+                        //     .pushNamed(RoutesNames.notificationsPage);
+                      },
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      borderSide: BorderSide(color: MyTheme.primaryColor),
+                    const Divider(thickness: 1, color: Color(0xffBAB1B1)),
+                    BuildSection(
+                      title: "Log Out",
+                      count: null,
+                      onTap: () {
+                        SharedPereferanceConstant.removeToken(key: "token");
+                        Navigator.of(context)
+                            .pushReplacementNamed(MyRoute.login);
+                      },
                     ),
-                  )),
-                ),
-                Expanded(
-                    flex: 1,
-                    child: ImageIcon(
-                      const AssetImage("assets/images/icon_cart.png"),
-                      color: MyTheme.primaryColor,
-                    )),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+                  ],
+                )))));
   }
 }

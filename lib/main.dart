@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_auvnet/constant/bloc_observer.dart';
 import 'package:task_auvnet/constant/routes.dart';
+import 'package:task_auvnet/constant/shared_pre.dart';
 import 'package:task_auvnet/my_theme.dart';
 import 'package:task_auvnet/ui/auth/login/login_screen.dart';
 import 'package:task_auvnet/ui/auth/register/register.dart';
 import 'package:task_auvnet/ui/splash/splash_screen.dart';
+import 'package:task_auvnet/ui/tabs/home/home_screen.dart';
+import 'package:task_auvnet/ui/tabs/list/widget/List_details.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
+  await SharedPereferanceConstant.init();
+
   runApp(const MyApp());
 }
 
@@ -16,11 +25,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoute.login,
+      initialRoute: MyRoute.splashScreen,
       routes: {
         MyRoute.login: (context) => const LoginScreen(),
         MyRoute.register: (context) => const RegisterScreen(),
         MyRoute.splashScreen: (context) => const SplashScreen(),
+        MyRoute.homeScreen: (context) => const HomeScreen(),
+        MyRoute.listDetailsName: (context) => const ListItemDetails(),
       },
       theme: MyTheme.myTheme,
     );
