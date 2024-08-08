@@ -16,8 +16,10 @@ class SplashScreen extends StatelessWidget {
 
     // Navigate to the appropriate screen based on user status
     if (user == null) {
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacementNamed(MyRoute.login);
     } else {
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacementNamed(MyRoute.homeScreen);
     }
   }

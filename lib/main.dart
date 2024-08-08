@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:task_auvnet/constant/bloc_observer.dart';
 import 'package:task_auvnet/constant/routes.dart';
 import 'package:task_auvnet/constant/shared_pre.dart';
+import 'package:task_auvnet/data/modal/respones/product_hive.dart';
 import 'package:task_auvnet/my_theme.dart';
 import 'package:task_auvnet/ui/auth/login/login_screen.dart';
 import 'package:task_auvnet/ui/auth/register/register.dart';
@@ -12,6 +14,8 @@ import 'package:task_auvnet/ui/tabs/list/widget/List_details.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(ProductAdapter());
   Bloc.observer = MyBlocObserver();
   await SharedPereferanceConstant.init();
 

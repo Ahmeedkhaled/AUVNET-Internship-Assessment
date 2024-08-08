@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_auvnet/constant/routes.dart';
 import 'package:task_auvnet/constant/shared_pre.dart';
 import 'package:task_auvnet/ui/tabs/profile/widget/profile_info.dart';
 import 'package:task_auvnet/ui/tabs/profile/widget/profile_section.dart';
 
 class ProfileTab extends StatelessWidget {
-  const ProfileTab({Key? key}) : super(key: key);
+  const ProfileTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class ProfileTab extends StatelessWidget {
                   // crossAxisAlignment: CrossAxisAlignment.end,
                   // mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    BuildProfileInfo(
+                    const BuildProfileInfo(
                         // userName: editProfileArgs?.name ?? state.userName,
                         // address: editProfileArgs?.address ?? state.address,
                         ),
